@@ -1,0 +1,4 @@
+BNMO:
+	gcc ../src/BNMO.c ../src/fungsi/dinerdash/dinerdash.c ../src/ADT/array/arraydin.c ../src/fungsi/hangman/hangman.c ../src/ADT/mesinkarakter/mesinkarakter.c ../src/ADT/mesinkata/mesinkata.c ../src/ADT/normalqueue/queue.c ../src/ADT/queue/queuediner.c ../src/fungsi/rng/RNG.c ../src/ADT/word/word.c ../src/fungsi/creategame/creategame.c ../src/fungsi/deletegame/deletegame.c ../src/fungsi/help/help.c ../src/fungsi/listgame/listgame.c ../src/fungsi/playgame/playgame.c ../src/fungsi/queuegame/queuegame.c ../src/fungsi/quit/quit.c ../src/fungsi/save/save.c ../src/fungsi/skipgame/skipgame.c ../src/fungsi/start/start.c ../src/fungsi/load/load.c -o BNMO
+DELETE:
+	del *.exe
