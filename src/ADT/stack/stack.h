@@ -5,10 +5,10 @@
 #ifndef stackt_H
 #define stackt_H
 
-#include "boolean.h"
+#include "../boolean.h"
 
 #define Nil -1
-#define MaxEl 100
+#define MaxEl 15
 /* Nil adalah stack dengan elemen kosong . */
 
 typedef int infotype;
@@ -18,9 +18,10 @@ typedef int address;   /* indeks tabel */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
   infotype T[MaxEl]; /* tabel penyimpan elemen */
+  int count; /* tabel untuk menyimpan banyak elemen stack*/
   address TOP;  /* alamat TOP: elemen puncak */
 } Stack;
-/* Definisi stack S kosong : S.TOP = Nil */
+/* Definisi stack S kosong : S.TOP = Nil dann S.count = 0*/
 /* Elemen yang dipakai menyimpan nilai Stack T[0]..T[MaxEl-1] */
 /* Jika S adalah Stack maka akses elemen : */
    /* S.T[(S.TOP)] untuk mengakses elemen TOP */
@@ -29,6 +30,7 @@ typedef struct {
 /* Definisi akses dengan Selektor : Set dan Get */
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
+#define Count(S) (S).count
 
 /* ************ Prototype ************ */
 /* *** Konstruktor/Kreator *** */

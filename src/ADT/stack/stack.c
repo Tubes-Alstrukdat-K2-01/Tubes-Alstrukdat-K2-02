@@ -38,6 +38,7 @@
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty(Stack *S){
     Top(*S) = Nil;
+    Count(*S) = 0;
 }
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
@@ -46,7 +47,7 @@ void CreateEmpty(Stack *S){
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean IsEmpty(Stack S){
-    return Top(S) == Nil;
+    return Top(S) == Nil && Count(S) == 0;
 }
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
 boolean IsFull(Stack S){
@@ -58,6 +59,7 @@ boolean IsFull(Stack S){
 void Push(Stack * S, infotype X){
     Top(*S) += 1; // Karena Nil adalah -1 maka tidak perlu pengecekan apabila kosong
     InfoTop(*S) = X;
+    Count(*S)++;
 }
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
@@ -67,6 +69,7 @@ void Push(Stack * S, infotype X){
 void Pop(Stack * S, infotype* X){
     *X = InfoTop(*S);
     Top(*S) -= 1;
+    Count(*S)--;
 }
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
