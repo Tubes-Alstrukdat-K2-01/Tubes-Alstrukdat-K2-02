@@ -9,7 +9,6 @@ void printnchar(char c, int n){
 // Menampilkan char c sebanyak n kali dalam satu baris
 
 void displayTOH(Stack A, Stack B, Stack C, int n){
-    int i;
     infotype x;
     int temp = n, space;
     while(!(IsEmpty(A)) || !(IsEmpty(B)) || !(IsEmpty(C))){
@@ -213,12 +212,13 @@ void towerofhanoi(){
         displayTOH(A,B,C,n);
     }
     printf("Permainan Berakhir! Banyak Steps yang dilakukan adalah %d\n",step);
-    skor = 100 - step + 2*n;
+    int scale = 1;
+    for(i = 0; i < n; i++){
+        scale *= 2;
+    }
+    skor = 99 + scale - step;
     if(skor < 0){
         skor = 0;
-    }
-    else if(skor > 100){
-        skor = 100;
     }
     printf("Skor Akhir : %d\n",skor);
 }

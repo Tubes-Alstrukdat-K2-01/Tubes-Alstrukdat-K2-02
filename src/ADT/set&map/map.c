@@ -34,8 +34,8 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty(Map *M){
     int i;
-    for(i = 0; i < MaxEl; i++){
-        M->Elements[i].score.Neff = 0;
+    for(i=0; i<MaxEl; i++){
+        (*M).Elements[(*M).Count].ctr = 0;
     }
     (*M).Count = Nil;
 }
@@ -57,39 +57,85 @@ boolean IsFull(Map M){
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-Kata *Value(Map M, int k){
+valuetype* Value(Map M, keytype k){
     if (IsMember(M,k)){
-        return M.Elements[k].score.A;
+        int i = 0;
+        valuetype* v;
+        for (i ; i < M.Count ; i++){
+            if (M.Elements[i].Key == k){
+                v = (valuetype*) malloc (M.Elements[i].ctr*sizeof(valuetype));
+                v = M.Elements[i].Value;
+                return v;
+            }
+        }
     }
     else{
-        return Undefined;
+        return Nil;
     }
 }
 /* Mengembalikan nilai value dengan key k dari M */
-/* Jika tidak ada key k pada M, akan mengembalikan Undefined */
+/* Jika tidak ada key k pada M, akan mengembalikan Nil */
 
-void Insert(Map *M, int k, Kata v){
-    if(!IsMember(*M, k)){
-        M->Count++;
+void Insert(Map *M, keytype k, valuetype v){
+    boolean found = false;
+    int i = 0, index;
+    while( (i < (*M).Count) && (!found) ){
+        if((*M).Elements[i].Key == k){
+            found = true;
+            index = i;
+        }
+        i++;
     }
-    M->Elements[k].score.A[M->Elements[k].score.Neff] = v;
-    M->Elements[k].score.Neff++;
+    if(!found){
+        (*M).Elements[(*M).Count].Key = k;
+        (*M).Elements[(*M).Count].Value[0] = v;
+        (*M).Elements[(*M).Count].ctr = 1;
+        (*M).Count++;
+    }
+    else{
+        (*M).Elements[index].Value[(*M).Elements[index].ctr] = v;
+        (*M).Elements[index].ctr++;
+    }
 }
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
-/* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
+/* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi penambahan valuetype */
 
-void Delete(Map *M, int k){
-    M->Elements[k].score.Neff = 0;
-    M->Count--;
+void Delete(Map *M, keytype k){
+    if (IsMember(*M,k) && (*M).Count == 1){
+        (*M).Count = Nil;
+    }
+    if (IsMember(*M,k)){
+        int i = 0, j , count = 0;
+        while (i < (*M).Elements[i].Key != k && count < MaxEl){
+            i = (i+1)% MaxEl;
+            count++;
+        } 
+        for (i ; i < (*M).Count; i++){
+            (*M).Elements[i].Key = (*M).Elements[i+1].Key;
+            for(j = 0; j < (*M).Elements[i+1].ctr; j++){
+                (*M).Elements[i].Value[j] = (*M).Elements[i+1].Value[j];
+            }
+            (*M).Elements[i].ctr = (*M).Elements[i+1].ctr;
+        }
+        (*M).Count--;
+    }
 }
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, int k){
-    return (M.Elements[k].score.Neff != Nil);
+boolean IsMember(Map M, keytype k){
+    int i = 0;
+    boolean found = false;
+    while((i < M.Count) && (!found)){
+        if(M.Elements[i].Key == k){
+            found = true;
+        }
+        i++;
+    }
+    return found;
 }
 /* Mengembalikan true jika k adalah member dari M */
