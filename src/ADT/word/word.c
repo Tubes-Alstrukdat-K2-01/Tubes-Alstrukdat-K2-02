@@ -90,3 +90,9 @@ char* concat(char *s1, char *s2){
     result[i] = '\0';
     return result;
 }
+
+void PrintKata(Word Kata){
+    for (int i = 0; i<Kata.Length; i++){
+        printf("%c", Kata.TabWord[i]);
+    }
+}
