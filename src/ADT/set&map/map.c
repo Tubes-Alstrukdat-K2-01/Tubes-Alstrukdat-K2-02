@@ -30,9 +30,21 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 /* M.Elements = tempat penyimpanan element Map */
 
 /* ********* Prototype ********* */
-
+int strcomp(char *s1, char *s2){
+    int i = 0;
+    while(s1[i] != '\0' && s2[i] != '\0'){
+        if(s1[i] != s2[i]){
+            return 0;
+        }
+        i++;
+    }
+    if(s1[i] == '\0' && s2[i] == '\0'){
+        return 1;
+    }
+    return 0;
+}
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Map *M){
+void MCreateEmpty(Map *M){
     int i;
     for(i=0; i<MaxEl; i++){
         (*M).Elements[(*M).Count].ctr = 0;
@@ -44,57 +56,44 @@ void CreateEmpty(Map *M){
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M){
+boolean MIsEmpty(Map M){
     return M.Count == Nil;
 }
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 
-boolean IsFull(Map M){
+boolean MIsFull(Map M){
     return M.Count == MaxEl;
 }
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-valuetype* Value(Map M, keytype k){
-    if (IsMember(M,k)){
+valuetype MValue(Map M, keytype k){
+    if (MIsMember(M,k)){
         int i = 0;
-        valuetype* v;
         for (i ; i < M.Count ; i++){
-            if (M.Elements[i].Key == k){
-                v = (valuetype*) malloc (M.Elements[i].ctr*sizeof(valuetype));
-                v = M.Elements[i].Value;
-                return v;
+            if (strcomp(M.Elements[i].Key,k)){
+                return M.Elements[i].Value;
             }
         }
     }
     else{
-        return Nil;
+        return Undefined;
     }
 }
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Nil */
 
-void Insert(Map *M, keytype k, valuetype v){
-    boolean found = false;
-    int i = 0, index;
-    while( (i < (*M).Count) && (!found) ){
-        if((*M).Elements[i].Key == k){
-            found = true;
-            index = i;
-        }
-        i++;
-    }
-    if(!found){
-        (*M).Elements[(*M).Count].Key = k;
-        (*M).Elements[(*M).Count].Value[0] = v;
-        (*M).Elements[(*M).Count].ctr = 1;
+void MInsert(Map *M, keytype k, valuetype v){
+    if(!MIsMember(*M,k)) {
         (*M).Count++;
-    }
-    else{
-        (*M).Elements[index].Value[(*M).Elements[index].ctr] = v;
-        (*M).Elements[index].ctr++;
+        int keylength = 0;
+        while(k[keylength] != '\0') keylength++;
+        for(int i = 0; i < keylength; i++){
+            (*M).Elements[(*M).Count-1].Key[i] = k[i]; 
+        }
+        (*M).Elements[(*M).Count-1].Value = v;
     }
 }
 /* Menambahkan Elmt sebagai elemen Map M. */
@@ -102,22 +101,23 @@ void Insert(Map *M, keytype k, valuetype v){
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi penambahan valuetype */
 
-void Delete(Map *M, keytype k){
-    if (IsMember(*M,k) && (*M).Count == 1){
+void MDelete(Map *M, keytype k){
+    if (MIsMember(*M,k) && (*M).Count == 1){
         (*M).Count = Nil;
     }
-    if (IsMember(*M,k)){
+    if (MIsMember(*M,k)){
         int i = 0, j , count = 0;
-        while (i < (*M).Elements[i].Key != k && count < MaxEl){
-            i = (i+1)% MaxEl;
-            count++;
+        //nyari indeks key
+        while (strcomp((*M).Elements[i].Key,k) == 0){
+            i++;
         } 
         for (i ; i < (*M).Count; i++){
-            (*M).Elements[i].Key = (*M).Elements[i+1].Key;
-            for(j = 0; j < (*M).Elements[i+1].ctr; j++){
-                (*M).Elements[i].Value[j] = (*M).Elements[i+1].Value[j];
+            //geser
+            (*M).Elements[i].Value = (*M).Elements[i+1].Value;
+            for(j = 0; j < 50; j++){
+                //copy string
+                (*M).Elements[i].Key[j]= (*M).Elements[i].Key[j+1];
             }
-            (*M).Elements[i].ctr = (*M).Elements[i+1].ctr;
         }
         (*M).Count--;
     }
@@ -127,11 +127,11 @@ void Delete(Map *M, keytype k){
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, keytype k){
+boolean MIsMember(Map M, keytype k){
     int i = 0;
     boolean found = false;
     while((i < M.Count) && (!found)){
-        if(M.Elements[i].Key == k){
+        if(strcomp(M.Elements[i].Key,k)){
             found = true;
         }
         i++;

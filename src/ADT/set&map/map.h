@@ -1,5 +1,5 @@
-#ifndef map_H
-#define map_H
+#ifndef __MAP_H__
+#define __MAP_H__
 #include <stdio.h>
 #include <stdlib.h>
 #include "../boolean.h"
@@ -13,16 +13,15 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define Nil 0
 #define MaxEl 100
 #define Undefined -999
-#define Nil NULL
 
 // typedef int bool;
-typedef int keytype;
-typedef char* valuetype;
+typedef char keytype[50]; //nama player
+typedef int valuetype;
 typedef int address;
 
 typedef struct {
 	keytype Key;
-	valuetype Value[100];
+	valuetype Value;
 	int ctr;
 } infotype;
 
@@ -38,38 +37,38 @@ typedef struct {
 /* ********* Prototype ********* */
 
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Map *M);
+void MCreateEmpty(Map *M);
 /* I.S. Sembarang */
 /* F.S. Membuat sebuah Map M kosong berkapasitas MaxEl */
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M);
+boolean MIsEmpty(Map M);
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 
-boolean IsFull(Map M);
+boolean MIsFull(Map M);
 /* Mengirim true jika Map M penuh */
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-valuetype* Value(Map M, keytype k);
+valuetype MValue(Map M, keytype k);
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void Insert(Map *M, keytype k, valuetype v);
+void MInsert(Map *M, keytype k, valuetype v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void Delete(Map *M, keytype k);
+void MDelete(Map *M, keytype k);
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, keytype k);
+boolean MIsMember(Map M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
 #endif

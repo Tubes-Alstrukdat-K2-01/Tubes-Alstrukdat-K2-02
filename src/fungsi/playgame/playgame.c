@@ -1,19 +1,19 @@
 #include "playgame.h"
-
-void menuPlayGame(Queue *Q){
+#include "../../ADT/set&map/map.h"
+void menuPlayGame(Queue *Q, Map M [NGame]){
     displayQueueGame(*Q);
     if (!isEmpty(*Q)){
         Kata Head;
         dequeue(Q, &Head);
         printf("%s\n",Head.Tab);
         /* nunggu list game buat nge run permainan yang di head */
-        Play(Head); // PLACEHOLDER
+        Play(Head, M); // PLACEHOLDER
     }
     else{
         printf("Antrian Game yang akan dimainkan kosong!\n");
     }
 }
-void Play(Kata W){
+void Play(Kata W, Map M [NGame]){
     if  (IsKataEqual(W, StringtoKata("RNG"))){
         printf("Loading game RNG...\n");
         RNG();
@@ -22,7 +22,11 @@ void Play(Kata W){
         dinerdash();
     } else if (IsKataEqual(W, StringtoKata("HANGMAN"))){
         printf("Loading game HANGMAN...\n");
-        hangman();
+        char nama[50];
+        printf("Masukkan nama: ");
+        scanf("%s", nama);
+        int skor = hangman();
+        MInsert(&M[2], nama, skor);
     } else if (IsKataEqual(W, StringtoKata("DINOSAUR IN EARTH"))){
         printf("Game DINOSAUR IN EARTH masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n");
     } else if (IsKataEqual(W, StringtoKata("RISEWOMAN"))){

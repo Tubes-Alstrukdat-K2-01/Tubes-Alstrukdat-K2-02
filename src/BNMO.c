@@ -13,12 +13,31 @@
 #include "fungsi/save/save.h"
 #include "fungsi/skipgame/skipgame.h"
 #include "fungsi/start/start.h"
+#include "fungsi/scoreboard/scoreboard.h"
 #include "ADT/queue/queuediner.h"
-
+#include "ADT/set&map/map.h"
+#define NGame 5
 int main(){
     ArrayDin TabGame = MakeArrayDin();
     boolean start = false, running = true;
     Queue QGame;
+    char * Games [NGame] = {"RNG", "DinerDash", "Hangman", "Tower Of Hanoi", "Snake"};
+    Map Scoreboards[NGame];
+    Map scRNG;
+    Map scDiner;
+    Map scHangman;
+    Map scTOH;
+    Map scSnake;
+    MCreateEmpty(&scRNG);
+    MCreateEmpty(&scDiner);
+    MCreateEmpty(&scHangman);
+    MCreateEmpty(&scTOH);
+    MCreateEmpty(&scSnake);
+    Scoreboards[0] = scRNG;
+    Scoreboards[1] = scDiner;
+    Scoreboards[2] = scHangman;
+    Scoreboards[3] = scTOH;
+    Scoreboards[4] = scSnake;
     CreateQueue(&QGame);
     printf("\n\n");       
     printf("               .:^^^^^~~~~~~~~~!!!!!!!!777777777!!~^^:..                                        \n");
@@ -261,7 +280,7 @@ int main(){
                 if(isEndWord()){
                     if(IsKataEqual(command2,StringtoKata("GAME"))){
                         if(start){    
-                            menuPlayGame(&QGame);
+                            menuPlayGame(&QGame, Scoreboards);
                         }
                         else{
                             printf("\nProgram BNMO belum dijalankan silahkan pilih command START atau LOAD terlebih dahulu!\n");
@@ -329,6 +348,61 @@ int main(){
                 printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
                 while(!isEndWord()){
                     ADVWORD();
+                }
+            }
+        } else if (IsKataEqual(command, StringtoKata("SCOREBOARD"))){
+            ADVWORD();
+            if (isEndWord())
+             for (int i = 0; i < NGame; i++){
+                printf("\nSCORE GAME %s\n", Games[i]);
+                PrintScore(Scoreboards[i]);
+            }
+            else{
+                printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
+                while(!isEndWord()){
+                    ADVWORD();
+                }
+            }
+        } else if (IsKataEqual(command, StringtoKata("RESET"))){
+            ADVWORD();
+             if(isEndWord()){
+                printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
+            }
+            else{
+                Kata command2; MakeKata(&command2);
+                CopyWordtoKata(&command2,currentWord);
+                ADVWORD();
+                if(isEndWord()){
+                    if(IsKataEqual(command2,StringtoKata("SCOREBOARD"))){
+                        printf("Pilih game yang ingin direset: \n");
+                        printf("0. All\n");
+                        for (int i = 0; i < NGame; i++){
+                            printf("%d. %s\n", i+1, Games[i]);
+                        }
+                        int game;
+                        printf("Pilihan (0-%d): ", NGame);
+                        scanf("%d", &game);
+                        if (game == 0){
+                            for (int i = 0; i < NGame; i++){
+                                MCreateEmpty(&Scoreboards[i]);
+                            }
+                        } else {
+                            MCreateEmpty(&Scoreboards[game-1]);
+                        }
+                        printf("Scoreboard berhasil direset!\n");
+                    }
+                    else{
+                        printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
+                        while(!isEndWord()){
+                            ADVWORD();
+                        }
+                    }
+                }
+                else{
+                    printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
+                    while(!isEndWord()){
+                        ADVWORD();
+                    }
                 }
             }
         }
