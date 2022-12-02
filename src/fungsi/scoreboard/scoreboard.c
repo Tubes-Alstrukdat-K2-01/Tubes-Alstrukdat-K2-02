@@ -22,8 +22,15 @@ void Scoreboard(Map *SC, ArrayDin game){
     }
 }
 
-void InsertScore(Map M, int score){
-
+void InsertScore(int game, int score){
+    printf("Nama: ");
+    STARTWORD();
+    Kata nama; MakeKata(&nama);
+    CopyWordtoKata(&nama,currentWord);
+    MInsert(&SC[game], nama, score);
+    while(!isEndWord()){
+        ADVWORD();
+    }
 }
 
 void ResetScore(ArrayDin TabGame){

@@ -21,6 +21,9 @@ ArrayDin initKatalist(){
     InsertAt(&A, StringtoKata("Lapar"),0);
     InsertAt(&A, StringtoKata("Kenyang"),1);
     InsertAt(&A, StringtoKata("Makan"),2);
+    InsertAt(&A, StringtoKata("Haus"),3);
+    InsertAt(&A, StringtoKata("Minum"),4);
+    InsertAt(&A, StringtoKata("Mie"),5);
     return A;
 }
 ArrayDin initDescList(){
@@ -29,6 +32,9 @@ ArrayDin initDescList(){
     InsertAt(&A, StringtoKata("berasa ingin makan (karena perut kosong)"),0);
     InsertAt(&A, StringtoKata("sudah puas makan"),1);
     InsertAt(&A, StringtoKata("bikin kenyang"),2);
+    InsertAt(&A, StringtoKata("berasa ingin minum"),3);
+    InsertAt(&A, StringtoKata("bikin haus ilang"),4);
+    InsertAt(&A, StringtoKata("makanan yang panjang-panjang"),5);
     return A;
 }
 //semua game ngasilin score (int)
@@ -48,8 +54,8 @@ void hangman(){
     int wrongGuess = 0; //kempatan
     boolean lose = false;
     Set guessedChar;
-    SCreateEmpty(&guessedChar);
     while (!lose){
+        SCreateEmpty(&guessedChar);
         int i;
         srand(time(0));
         int random = rand() % Katalist.Neff;
@@ -103,4 +109,5 @@ void hangman(){
         }
     }
     printf("Score yang kamu dapatkan: %d\n", score);
+    InsertScore(2,score);
 }

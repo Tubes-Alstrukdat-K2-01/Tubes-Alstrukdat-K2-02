@@ -1,8 +1,17 @@
 #ifndef __SCOREBOARD_H__
 #define __SOCREBOARD_H__
 
-#include "../../ADT/set&map/map.h"
+#include "../../ADT/setmap/map.h"
+#include "../../ADT/array/arraydin.h"
+#include "../../ADT/global.h"
 #include <stdio.h>
+
 void PrintScore(Map M);
+
+void Scoreboard(Map *SC, ArrayDin game);
+
+void InsertScore(int game, int score);
+
+void ResetScore(ArrayDin game);
 
 #endif // !__SCORE_BOARD__
