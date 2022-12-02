@@ -45,7 +45,7 @@ ular makeUlar() {
         x3 = x2-1;
         y3 = y2;
     }
-    infotype3 Head =  MakebUlar(x1,y1,99);
+    infotype3 Head =  MakebUlar(x1,y1,(-9));
     InsVFirst(&Ularmain,Head);
     //printf("%d\n",Ularmain.First->info.koorx);
     //printf("%d\n",Ularmain.First->info.koory);
@@ -71,7 +71,7 @@ void buahTOpeta(MATRIKS* peta) {
     //x = rand() %5 ;
     //y = rand() %5 ;
     x = 0;
-    y = 2;
+    y = 3;
     sukses = false;
     while (!sukses) {
         if (Elmt(*peta,y+1,x+1) == 0) {
@@ -107,6 +107,7 @@ void UlarTOpeta(MATRIKS* peta,ular* Ularmain) {
 }
 
 void playsnake() {
+    infotype3 trash;
     MATRIKS peta;
     boolean makan = false;
     boolean play = true;
@@ -126,17 +127,20 @@ void playsnake() {
     x = P->info.koorx;
     y = P->info.koory;
     printf("%d %d\n",x,y);
-    while (i < 1) {
+    while (play) {
         printf("Masukkan input anda: \n");
-        //scanf(" %c",&cc);
+        scanf(" %c",&cc);
         //case s
         if ( cc = 's') {
-            printf("%d %d\n",x,y);
-            printf("%d\n",Elmt(peta,y+2,x+1));
+            //printf("%d %d\n",x,y);
+            //printf("%d\n",Elmt(peta,y+2,x+1));
             if (Elmt(peta,y+2,x+1) == -1) {
-                InsVFirst(&Ularmain,MakebUlar(0,2,99));
+                InsVFirst(&Ularmain,MakebUlar(x,(y+5)%4,(-9)));
                 printf("yes\n");
                 P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
                 while ( P != Nil) {
                 P->info.bagian = i;
                 P = Next(P);
@@ -146,12 +150,130 @@ void playsnake() {
                 TulisMATRIKSpeta(peta);
             } 
             else {
-                printf("fuck\n");
+                InsVFirst(&Ularmain,MakebUlar(x,(y+5)%4,(-9)));
+                P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                
+                }
+                DelVLast(&Ularmain,&trash);
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
             }
         }
-        
-        
-        i++;
+        if ( cc = 'w') {
+            //printf("%d %d\n",x,y);
+            //printf("%d\n",Elmt(peta,y,x+1));
+            if (Elmt(peta,y,x+1) == -1) {
+                InsVFirst(&Ularmain,MakebUlar(x,(y+3)%4,(-9)));
+                printf("yes\n");
+                P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                }
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
+            } 
+            else {
+                InsVFirst(&Ularmain,MakebUlar(x,(y+3)%4,(-9)));
+                P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                
+                }
+                DelVLast(&Ularmain,&trash);
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
+            }
+        }
+        if ( cc = 'a') {
+            //printf("%d %d\n",x,y);
+            //printf("%d\n",Elmt(peta,y+1,x));
+            if (Elmt(peta,y+1,x) == -1) {
+                InsVFirst(&Ularmain,MakebUlar((x+3)%4,y,(-9)));
+                printf("yes\n");
+                P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                }
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
+            } 
+            else {
+                InsVFirst(&Ularmain,MakebUlar((x+3)%4,y,(-9)));
+                P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                
+                }
+                DelVLast(&Ularmain,&trash);
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
+            }
+        if ( cc = 'd') {
+            //printf("%d %d\n",x,y);
+            //printf("%d\n",Elmt(peta,y+1,x));
+            if (Elmt(peta,y+1,x+2) == -1) {
+                InsVFirst(&Ularmain,MakebUlar((x+5)%4,y,(-9)));
+                printf("yes\n");
+                P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                }
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
+            } 
+            else {
+                InsVFirst(&Ularmain,MakebUlar((x+5)%4,y,(-9)));
+                P = First(Ularmain);
+                P->info.bagian = (-9);
+                P = Next(P);
+                i = 1;
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                
+                }
+                DelVLast(&Ularmain,&trash);
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
+            }
+        }
+        }
+        if (NbElmt(Ularmain) == 24) {
+            play = false;
+        }
     }
 }
 
