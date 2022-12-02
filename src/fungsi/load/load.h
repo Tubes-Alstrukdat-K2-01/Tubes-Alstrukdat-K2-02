@@ -3,6 +3,7 @@
 
 #include "../../ADT/array/arraydin.h"
 #include "../../ADT/word/word.h"
+#include "../../ADT/global.h"
 #include <stdio.h>
 #include <stdlib.h>
 

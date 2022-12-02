@@ -106,6 +106,7 @@ void towerofhanoi(){
     CreateEmpty(&A); CreateEmpty(&B); CreateEmpty(&C);
     int n, i; 
     boolean invalid = true;
+    printf("Jumlah piringan maksimum adalah 15\n");
     printf("Masukkan jumlah piringan yang ingin dimainkan: ");
     while(invalid){
         n = 0;
