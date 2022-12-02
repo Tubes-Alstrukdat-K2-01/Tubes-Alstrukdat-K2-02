@@ -10,7 +10,7 @@ ular makeUlar() {
     //int y1 = rand() %5;
     int x1,y1=1;
     int x2,y2,x3,y3;
-    printf("%d %d\n",x1,y1);
+    //("%d %d\n",x1,y1);
     ular Ularmain;
     CreateEmpty(&Ularmain);
     if (x1 == 0) {
@@ -107,6 +107,7 @@ void UlarTOpeta(MATRIKS* peta,ular* Ularmain) {
 }
 
 void playsnake() {
+    printf("SELAMAT DATANG DI SNAKE ON METEOR\n");
     infotype3 trash;
     MATRIKS peta;
     boolean makan = false;
@@ -114,11 +115,10 @@ void playsnake() {
     char cc;
     ular Ularmain  = makeUlar();
     setupPeta(&peta);
-    printf("yes1\n");
     UlarTOpeta(&peta,&Ularmain);
-    printf("yes1\n");
+
     buahTOpeta(&peta);
-    printf("yes1\n");
+
     TulisMATRIKSpeta(peta);
     address P = First(Ularmain);
     int i = 0;
@@ -126,8 +126,7 @@ void playsnake() {
     int y ;
     x = P->info.koorx;
     y = P->info.koory;
-    printf("%d %d\n",x,y);
-    while (play) {
+    while (i < 1) {
         printf("Masukkan input anda: \n");
         scanf(" %c",&cc);
         //case s
@@ -206,7 +205,7 @@ void playsnake() {
             //printf("%d\n",Elmt(peta,y+1,x));
             if (Elmt(peta,y+1,x) == -1) {
                 InsVFirst(&Ularmain,MakebUlar((x+3)%4,y,(-9)));
-                printf("yes\n");
+                //printf("yes\n");
                 P = First(Ularmain);
                 P->info.bagian = (-9);
                 P = Next(P);
@@ -240,7 +239,7 @@ void playsnake() {
             //printf("%d\n",Elmt(peta,y+1,x));
             if (Elmt(peta,y+1,x+2) == -1) {
                 InsVFirst(&Ularmain,MakebUlar((x+5)%4,y,(-9)));
-                printf("yes\n");
+                //printf("yes\n");
                 P = First(Ularmain);
                 P->info.bagian = (-9);
                 P = Next(P);
@@ -271,9 +270,7 @@ void playsnake() {
             }
         }
         }
-        if (NbElmt(Ularmain) == 24) {
-            play = false;
-        }
+        i++;
     }
 }
 
