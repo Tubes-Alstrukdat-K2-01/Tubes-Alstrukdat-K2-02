@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.py": "python",
-        "arraydin.h": "c"
+        "arraydin.h": "c",
+        "history.h": "c"
     }
 }
