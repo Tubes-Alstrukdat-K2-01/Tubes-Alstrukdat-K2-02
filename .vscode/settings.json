@@ -2,6 +2,7 @@
     "files.associations": {
         "*.py": "python",
         "arraydin.h": "c",
-        "history.h": "c"
+        "history.h": "c",
+        "map.h": "c"
     }
 }

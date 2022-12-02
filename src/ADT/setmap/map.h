@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../boolean.h"
+#include "../word/word.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
@@ -15,14 +16,13 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 #define Undefined -999
 
 // typedef int bool;
-typedef char keytype[50]; //nama player
+typedef Kata keytype; //nama player
 typedef int valuetype;
 typedef int address;
 
 typedef struct {
 	keytype Key;
 	valuetype Value;
-	int ctr;
 } infotype;
 
 typedef struct {
