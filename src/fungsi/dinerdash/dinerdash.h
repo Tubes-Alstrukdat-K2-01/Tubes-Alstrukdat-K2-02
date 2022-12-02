@@ -2,6 +2,7 @@
 #define __DINER_DASH__
 
 #include "../../ADT/queue/queuediner.h"
+#include "../scoreboard/scoreboard.h"
 
 boolean gameover(Queuediner q, int pelayanan);
 /*
