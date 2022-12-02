@@ -127,14 +127,12 @@ void playsnake() {
     int y ;
     x = P->info.koorx;
     y = P->info.koory;
+    printf("%d %d\n",x,y);
     while (i < 3) {
         printf("Masukkan input anda: \n");
         scanf(" %c",&cc);
         if ( cc == 'a') {
-            InsVFirst(&Ularmain,MakebUlar(x-1,y-1,99));
             
-            UlarTOpeta(&peta,&Ularmain);
-            TulisMATRIKSpeta(peta);
         }
         i++;
     }
