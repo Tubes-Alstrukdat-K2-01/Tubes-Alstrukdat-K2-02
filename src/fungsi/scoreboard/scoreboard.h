@@ -10,7 +10,7 @@ void PrintScore(Map M);
 
 void Scoreboard(Map *SC, ArrayDin game);
 
-void InserScore(Map M, int score);
+void InsertScore(int game, int score);
 
 void ResetScore(ArrayDin game);
 

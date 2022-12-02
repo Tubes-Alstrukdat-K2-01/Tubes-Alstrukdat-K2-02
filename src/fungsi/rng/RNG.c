@@ -87,8 +87,10 @@ void RNG() {
         printf("HEBAT,KAMU BERHASIL MENEBAK\n");
         printf("SKOR YANG KAMU DAPAT ADALAH %d\n",skor);
     } else {
+        skor = 1;
         printf("SAYANG SEKALI KAMU BELUM BERHASIL\n");
-        printf("SKOR YANG KAMU DAPAT ADALAH %d\n",1);
+        printf("SKOR YANG KAMU DAPAT ADALAH %d\n",skor);
     }
+    InsertScore(0,skor);
 }
 

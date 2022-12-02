@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "../../ADT/stack/stack.h"
 #include "../../ADT/mesinkata/mesinkata.h"
+#include "../scoreboard/scoreboard.h"
 
 void printnchar(char c, int n);
 // Menampilkan char c sebanyak n kali dalam satu baris

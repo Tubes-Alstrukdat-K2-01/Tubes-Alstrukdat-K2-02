@@ -103,4 +103,5 @@ void hangman(){
         }
     }
     printf("Score yang kamu dapatkan: %d\n", score);
+    InsertScore(2,score);
 }

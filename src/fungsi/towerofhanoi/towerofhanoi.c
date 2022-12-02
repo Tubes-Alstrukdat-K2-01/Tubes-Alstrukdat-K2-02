@@ -221,5 +221,6 @@ void towerofhanoi(){
         skor = 0;
     }
     printf("Skor Akhir : %d\n",skor);
+    InsertScore(3,skor);
 }
 // Main fungsi game tower of hanoi

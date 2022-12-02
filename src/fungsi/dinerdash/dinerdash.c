@@ -345,4 +345,5 @@ void dinerdash(){
     saldo = (saldo+1)/1000;
     saldo = saldo*1000;
     printf("Game Over!, SALDO ANDA: %d\n",saldo);
+    InsertScore(1,saldo);
 }
