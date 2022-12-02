@@ -13,7 +13,7 @@ void CreateEmpty(List *L)
     First(*L) = Nil;
 }
 
-address Alokasi(infotype X)
+address Alokasi(infotype3 X)
 {
     address P;
     P = (address)malloc(sizeof(ElmtList));
@@ -30,7 +30,7 @@ void Dealokasi(address *P)
     free(*P);
 }
 
-address Search(List L, infotype X)
+address Search(List L, infotype3 X)
 {
     address P = First(L);
     boolean isFound = false;
@@ -44,21 +44,21 @@ address Search(List L, infotype X)
     return P;
 }
 
-void InsVFirst(List *L, infotype X)
+void InsVFirst(List *L, infotype3 X)
 {
     address P = Alokasi(X);
     if (P != Nil)
         InsertFirst(L, P);
 }
 
-void InsVLast(List *L, infotype X)
+void InsVLast(List *L, infotype3 X)
 {
     address P = Alokasi(X);
     if (P != Nil)
         InsertLast(L, P);
 }
 
-void DelVFirst(List *L, infotype *X)
+void DelVFirst(List *L, infotype3 *X)
 {
     address P;
     DelFirst(L, &P);
@@ -66,7 +66,7 @@ void DelVFirst(List *L, infotype *X)
     Dealokasi(&P);
 }
 
-void DelVLast(List *L, infotype *X)
+void DelVLast(List *L, infotype3 *X)
 {
     address P;
     DelLast(L, &P);
@@ -107,7 +107,7 @@ void DelFirst(List *L, address *P)
     Next(*P) = Nil;
 }
 
-void DelP(List *L, infotype X)
+void DelP(List *L, infotype3 X)
 {
     address P = Search(*L, X);
     if (P != Nil)
@@ -180,7 +180,7 @@ void Konkat1(List *L1, List *L2, List *L3)
     CreateEmpty(L2);
 }
 
-infotype MakebUlar(int x,int y,int bagian) {
+infotype3 MakebUlar(int x,int y,int bagian) {
     bagianular test;
     test.koorx = x;
     test.koory = y;

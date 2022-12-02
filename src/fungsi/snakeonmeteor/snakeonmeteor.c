@@ -6,9 +6,9 @@
 #include "../../ADT/listlinier/listular.c"
 
 ular makeUlar() {
-    int x1 = rand() %5;
-    int y1 = rand() %5;
-    //int x1,y1=0;
+    //int x1 = rand() %5;
+    //int y1 = rand() %5;
+    int x1,y1=1;
     int x2,y2,x3,y3;
     printf("%d %d\n",x1,y1);
     ular Ularmain;
@@ -45,14 +45,14 @@ ular makeUlar() {
         x3 = x2-1;
         y3 = y2;
     }
-    infotype Head =  MakebUlar(x1,y1,99);
+    infotype3 Head =  MakebUlar(x1,y1,99);
     InsVFirst(&Ularmain,Head);
     //printf("%d\n",Ularmain.First->info.koorx);
     //printf("%d\n",Ularmain.First->info.koory);
     //printf("%d\n",Ularmain.First->info.bagian);
-    infotype ular2 = MakebUlar(x2,y2,1);
+    infotype3 ular2 = MakebUlar(x2,y2,1);
     InsVLast(&Ularmain,ular2);
-    infotype ular3 = MakebUlar(x3,y3,2);
+    infotype3 ular3 = MakebUlar(x3,y3,2);
     InsVLast(&Ularmain,ular3);
 
     //printf("%d",Ularmain.First->info.koorx);
@@ -64,28 +64,23 @@ void setupPeta (MATRIKS* peta) {
     //TulisMATRIKSpeta(*peta);
     
 }
-infotype newbuah() {
-    int x,y;
-    x = rand() %5 ;
-    y = rand() %5 ;
-    infotype Buah = MakebUlar(x,y,-1);
-    return Buah;
-}
 
-void buahTOpeta(MATRIKS* peta,infotype buah) {
-    int x = buah.koorx;
-    int y = buah.koory;
-    int val = Elmt(*peta,y+1,x+1);
-    //printf("%d %d\n",x,y);
-    boolean sukses = false;
-    while ( !sukses) {
+void buahTOpeta(MATRIKS* peta) {
+    boolean sukses;
+    int x,y;
+    //x = rand() %5 ;
+    //y = rand() %5 ;
+    x = 0;
+    y = 2;
+    sukses = false;
+    while (!sukses) {
         if (Elmt(*peta,y+1,x+1) == 0) {
             Elmt(*peta,y+1,x+1) = -1;
             sukses = true;
         }
-        buah = newbuah();
+        x = rand() %5 ;
+        y = rand() %5 ;
     }
-    //TulisMATRIKSpeta(*peta);    
 }
 
 void UlarTOpeta(MATRIKS* peta,ular* Ularmain) {
@@ -118,8 +113,11 @@ void playsnake() {
     char cc;
     ular Ularmain  = makeUlar();
     setupPeta(&peta);
+    printf("yes1\n");
     UlarTOpeta(&peta,&Ularmain);
-    buahTOpeta(&peta,newbuah());
+    printf("yes1\n");
+    buahTOpeta(&peta);
+    printf("yes1\n");
     TulisMATRIKSpeta(peta);
     address P = First(Ularmain);
     int i = 0;
@@ -128,12 +126,31 @@ void playsnake() {
     x = P->info.koorx;
     y = P->info.koory;
     printf("%d %d\n",x,y);
-    while (i < 3) {
+    while (i < 1) {
         printf("Masukkan input anda: \n");
-        scanf(" %c",&cc);
-        if ( cc == 'a') {
-            
+        //scanf(" %c",&cc);
+        //case s
+        if ( cc = 's') {
+            printf("%d %d\n",x,y);
+            printf("%d\n",Elmt(peta,y+2,x+1));
+            if (Elmt(peta,y+2,x+1) == -1) {
+                InsVFirst(&Ularmain,MakebUlar(0,2,99));
+                printf("yes\n");
+                P = First(Ularmain);
+                while ( P != Nil) {
+                P->info.bagian = i;
+                P = Next(P);
+                i++;
+                }
+                UlarTOpeta(&peta,&Ularmain);
+                TulisMATRIKSpeta(peta);
+            } 
+            else {
+                printf("fuck\n");
+            }
         }
+        
+        
         i++;
     }
 }

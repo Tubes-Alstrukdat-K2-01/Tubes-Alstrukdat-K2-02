@@ -13,7 +13,7 @@ void CreateEmpty(List *L)
     First(*L) = Nil;
 }
 
-address Alokasi(infotype X)
+address Alokasi(infotype3 X)
 {
     address P;
     P = (address)malloc(sizeof(ElmtList));
@@ -30,7 +30,7 @@ void Dealokasi(address *P)
     free(*P);
 }
 
-address Search(List L, infotype X)
+address Search(List L, infotype3 X)
 {
     address P = First(L);
     boolean isFound = false;
@@ -44,21 +44,21 @@ address Search(List L, infotype X)
     return P;
 }
 
-void InsVFirst(List *L, infotype X)
+void InsVFirst(List *L, infotype3 X)
 {
     address P = Alokasi(X);
     if (P != Nil)
         InsertFirst(L, P);
 }
 
-void InsVLast(List *L, infotype X)
+void InsVLast(List *L, infotype3 X)
 {
     address P = Alokasi(X);
     if (P != Nil)
         InsertLast(L, P);
 }
 
-void DelVFirst(List *L, infotype *X)
+void DelVFirst(List *L, infotype3 *X)
 {
     address P;
     DelFirst(L, &P);
@@ -66,7 +66,7 @@ void DelVFirst(List *L, infotype *X)
     Dealokasi(&P);
 }
 
-void DelVLast(List *L, infotype *X)
+void DelVLast(List *L, infotype3 *X)
 {
     address P;
     DelLast(L, &P);
@@ -107,7 +107,7 @@ void DelFirst(List *L, address *P)
     Next(*P) = Nil;
 }
 
-void DelP(List *L, infotype X)
+void DelP(List *L, infotype3 X)
 {
     address P = Search(*L, X);
     if (P != Nil)
@@ -181,10 +181,10 @@ int NbElmt(List L)
     return count;
 }
 
-infotype Max(List L)
+infotype3 Max(List L)
 {
     address P = First(L);
-    infotype max = Info(P);
+    infotype3 max = Info(P);
     while (Next(P) != Nil)
     {
         P = Next(P);
@@ -198,7 +198,7 @@ address AdrMax(List L)
 {
     address P = First(L);
     address addrMax = First(L);
-    infotype max = Info(P);
+    infotype3 max = Info(P);
     while (Next(P) != Nil)
     {
         P = Next(P);
@@ -211,10 +211,10 @@ address AdrMax(List L)
     return addrMax;
 }
 
-infotype Min(List L)
+infotype3 Min(List L)
 {
     address P = First(L);
-    infotype min = Info(P);
+    infotype3 min = Info(P);
     while (Next(P) != Nil)
     {
         P = Next(P);
@@ -228,7 +228,7 @@ address AdrMin(List L)
 {
     address P = First(L);
     address addrMin = First(L);
-    infotype min = Info(P);
+    infotype3 min = Info(P);
     while (Next(P) != Nil)
     {
         P = Next(P);
@@ -288,7 +288,7 @@ void Konkat1(List *L1, List *L2, List *L3)
 int main() {
     List Ularmain;
     CreateEmpty(&Ularmain);
-    infotype X = 2;
+    infotype3 X = 2;
     address P = Alokasi(X);
     InsertFirst(&Ularmain,P);
 
