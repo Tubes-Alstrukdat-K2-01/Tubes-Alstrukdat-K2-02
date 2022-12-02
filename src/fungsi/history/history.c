@@ -32,7 +32,7 @@ void ResetHistory(Stack2 *stackhistory){
     else{
       if(IsKataEqual(cmd,StringtoKata("YA"))){
         infotype2 value;
-        while(!IsEmpty2(*stackhistory)){
+        while(!IsEmptyStack2(*stackhistory)){
           Pop2(stackhistory,&value);
         }
         printf("History berhasil di-reset.\n");
@@ -64,7 +64,7 @@ void ResetHistory(Stack2 *stackhistory){
         if(IsKataEqual(cmd,StringtoKata("YA"))){
           valid = true;
           infotype2 value;
-          while(!IsEmpty2(*stackhistory)){
+          while(!IsEmptyStack2(*stackhistory)){
             Pop2(stackhistory,&value);
           }
           printf("History berhasil di-reset.\n");

@@ -1,6 +1,9 @@
 #include "start.h"
 #include <stdio.h>
 
+Stack2 History;
+Map SC[100];
+
 void STARTPROGRAM(ArrayDin *TabGame, boolean *start)
 {
     if (*start)
@@ -9,10 +12,14 @@ void STARTPROGRAM(ArrayDin *TabGame, boolean *start)
     }
     else
     {
+        CreateEmpty2(&History);
+        for(int j=0; j<100; j++){
+            MCreateEmpty(&SC[j]);
+        }
         *start = true;
         *TabGame = MakeArrayDin();
         int i;
-        for (i = 0; i < 6; i++)
+        for (i = 0; i < 5; i++)
         {
             Kata k;
             MakeKata(&k);
@@ -28,22 +35,17 @@ void STARTPROGRAM(ArrayDin *TabGame, boolean *start)
             }
             else if (i == 2)
             {
-                char p[25] = "DINOSAUR IN EARTH";
+                char p[25] = "HANGMAN";
                 CopyStringtoKata(&k, p);
             }
             else if (i == 3)
             {
-                char p[25] = "RISEWOMAN";
+                char p[25] = "TOWER OF HANOI";
                 CopyStringtoKata(&k, p);
             }
             else if (i == 4)
             {
-                char p[25] = "EIFFEL TOWER";
-                CopyStringtoKata(&k, p);
-            }
-            else
-            {
-                char p[25] = "HANGMAN";
+                char p[25] = "SNAKE ON METEOR";
                 CopyStringtoKata(&k, p);
             }
             InsertLast(TabGame, k);

@@ -2,13 +2,9 @@
 #define __GLOBAL__
 
 #include "stack/stack.h"
-#include "set&map/map.h"
+#include "setmap/map.h"
 
 extern Stack2 History;
-extern Map scRNG;
-extern Map scDiner;
-extern Map scHangman;
-extern Map scTOH;
-extern Map scSnake;
+extern Map SC[100]; //Maksimal Game Hanya 100
 
 #endif // !__GLOBAL__

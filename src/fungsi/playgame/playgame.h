@@ -7,13 +7,17 @@
 #include "../../ADT/array/arraydin.h"
 #include "../hangman/hangman.h"
 #include "../queuegame/queuegame.h"
-#include "../../ADT/set&map/map.h"
+#include "../../ADT/setmap/map.h"
+#include "../towerofhanoi/towerofhanoi.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "../../ADT/stack/stack.h"
+#include "../../ADT/global.h"
 #define NGame 5
-void menuPlayGame(Queue *Q, Map M [NGame]);
 
-void Play(Kata W, Map M [NGame]);
+void menuPlayGame(Queue *Q);
+
+void Play(Kata W);
 
 #endif // !__PLAY_GAME__

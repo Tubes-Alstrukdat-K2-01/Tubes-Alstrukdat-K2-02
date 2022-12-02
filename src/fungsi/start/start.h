@@ -2,6 +2,7 @@
 #define __START__
 
 #include "../../ADT/array/arraydin.h"
+#include "../../ADT/global.h"
 
 void STARTPROGRAM(ArrayDin *TabGame, boolean *start);
 /*

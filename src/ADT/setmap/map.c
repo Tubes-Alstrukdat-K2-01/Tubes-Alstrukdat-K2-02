@@ -45,10 +45,6 @@ int strcomp(char *s1, char *s2){
 }
 /* *** Konstruktor/Kreator *** */
 void MCreateEmpty(Map *M){
-    int i;
-    for(i=0; i<MaxEl; i++){
-        (*M).Elements[(*M).Count].ctr = 0;
-    }
     (*M).Count = Nil;
 }
 /* I.S. Sembarang */
@@ -73,7 +69,7 @@ valuetype MValue(Map M, keytype k){
     if (MIsMember(M,k)){
         int i = 0;
         for (i ; i < M.Count ; i++){
-            if (strcomp(M.Elements[i].Key,k)){
+            if(IsKataEqual(M.Elements[i].Key,k)){
                 return M.Elements[i].Value;
             }
         }
@@ -87,13 +83,24 @@ valuetype MValue(Map M, keytype k){
 
 void MInsert(Map *M, keytype k, valuetype v){
     if(!MIsMember(*M,k)) {
-        (*M).Count++;
-        int keylength = 0;
-        while(k[keylength] != '\0') keylength++;
-        for(int i = 0; i < keylength; i++){
-            (*M).Elements[(*M).Count-1].Key[i] = k[i]; 
+        int index = 0;
+        while(((*M).Elements[index].Value >= v) && (index < (*M).Count)){
+            index++;
         }
-        (*M).Elements[(*M).Count-1].Value = v;
+        (*M).Count++;
+        int i = (*M).Count;
+        for(i; i > index; i--){
+            (*M).Elements[i].Value = (*M).Elements[i-1].Value;
+            for(int j=0; j < 50; j++){
+                (*M).Elements[i].Key.Tab[j] = (*M).Elements[i-1].Key.Tab[j];
+            }
+            (*M).Elements[i].Key.Length = (*M).Elements[i-1].Key.Length;
+        }
+        (*M).Elements[index].Value = v;
+        for(int j=0; j < 50; j++){
+                (*M).Elements[index].Key.Tab[j] = k.Tab[j];
+        }
+        (*M).Elements[index].Key.Length = k.Length;
     }
 }
 /* Menambahkan Elmt sebagai elemen Map M. */
@@ -108,16 +115,17 @@ void MDelete(Map *M, keytype k){
     if (MIsMember(*M,k)){
         int i = 0, j , count = 0;
         //nyari indeks key
-        while (strcomp((*M).Elements[i].Key,k) == 0){
+        while (!IsKataEqual((*M).Elements[i].Key,k)){
             i++;
         } 
         for (i ; i < (*M).Count; i++){
             //geser
             (*M).Elements[i].Value = (*M).Elements[i+1].Value;
-            for(j = 0; j < 50; j++){
-                //copy string
-                (*M).Elements[i].Key[j]= (*M).Elements[i].Key[j+1];
+            //copy string
+            for(int j=0; j < 50; j++){
+                (*M).Elements[i].Key.Tab[j] = (*M).Elements[i+1].Key.Tab[j];
             }
+            (*M).Elements[i].Key.Length = (*M).Elements[i+1].Key.Length;
         }
         (*M).Count--;
     }
@@ -131,7 +139,7 @@ boolean MIsMember(Map M, keytype k){
     int i = 0;
     boolean found = false;
     while((i < M.Count) && (!found)){
-        if(strcomp(M.Elements[i].Key,k)){
+        if(IsKataEqual(M.Elements[i].Key,k)){
             found = true;
         }
         i++;
