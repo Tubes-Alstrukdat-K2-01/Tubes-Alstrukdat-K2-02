@@ -8,7 +8,8 @@
         "time.h": "c",
         "towerofhanoi.h": "c",
         "stack.h": "c",
-        "scoreboard.h": "c"
+        "scoreboard.h": "c",
+        "word.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

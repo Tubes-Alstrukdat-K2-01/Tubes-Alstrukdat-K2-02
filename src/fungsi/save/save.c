@@ -33,7 +33,7 @@ char* IntToString(int n){
     return s;
 }
 
-void SAVE(ArrayDin TabGame, char *filename){
+void SAVE(ArrayDin TabGame,char *filename){
     char* loc = concat("../data/",filename);
     file = fopen(loc,"w");
     // printf("%d\n",file == NULL);
@@ -45,5 +45,16 @@ void SAVE(ArrayDin TabGame, char *filename){
         fputs(TabGame.A[i].Tab,file);
         fputs("\n",file);
     }
+    for(i=0; i<TabGame.Neff; i++){
+        int j;
+        for(j=0; j<SC[i].Count; j++){
+            fputs(SC[i].Elements[j].Key.Tab,file);
+            fputs(" ",file);
+            char *skor = IntToString(SC[i].Elements[j].Value);
+            fputs(skor,file);
+            fputs("\n",file);
+        }
+    }
+    fclose(file);
     printf("Save file berhasil disimpan.\n");
 }

@@ -1,5 +1,8 @@
 #include "load.h"
 
+Stack2 History;
+Map SC[100];
+
 void LOAD(ArrayDin *TabGame, boolean *start, char *filename)
 {
     if (*start)
@@ -7,6 +10,10 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename)
         printf("Proses LOAD gagal karena BNMO telah dijalankan.");
     }
     else{
+        CreateEmpty2(&History);
+        for(int j=0; j<100; j++){
+            MCreateEmpty(&SC[j]);
+        }
         MakeArrayDin(TabGame);
         FILE *file;
         char *loc = concat("../data/",filename);
@@ -36,8 +43,42 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename)
                 CopyStringtoKata(&w, data);
                 InsertAt(TabGame, w, i);
             }
+            for (i = 0; i < n; i++)
+            {
+                fgets(data, 255, file);
+                int j = 0, k = 0;
+                while(data[k] != '\0'){
+                    if(data[k] >= '0' && data[k] <= '9'){
+                        j *= 10;
+                        j += (int)(data[k]-48);
+                    }
+                    k++;
+                }
+                for(int a=0; a < j; a++){
+                    fgets(data, 255, file);
+                    Kata w;
+                    MakeKata(&w);
+                    k = 0;
+                    while(data[k] != '\0' && data[k] != ' '){
+                        w.Tab[k] = data[k];
+                        k++;
+                    }
+                    w.Tab[k] = '\0';
+                    while(data[k] == ' '){
+                        k++;
+                    }
+                    int skor = 0;
+                    while(data[k] != '\0'){
+                        if(data[k] >= '0' && data[k] <= '9'){
+                            skor *= 10;
+                            skor += (int)(data[k]-48);
+                        }
+                        k++;
+                    }
+                    MInsert(&SC[i],w,skor);
+                }
+            }
         }
-        fclose(file);
     }
 }
 /*

@@ -2,6 +2,7 @@
 #define __SAVE__
 
 #include "../../ADT/array/arraydin.h"
+#include "../../ADT/global.h"
 
 char* IntToString(int n);
 
