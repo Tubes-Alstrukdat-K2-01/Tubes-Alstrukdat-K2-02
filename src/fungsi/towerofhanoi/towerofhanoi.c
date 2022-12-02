@@ -9,9 +9,9 @@ void printnchar(char c, int n){
 // Menampilkan char c sebanyak n kali dalam satu baris
 
 void displayTOH(Stack A, Stack B, Stack C, int n){
-    infotype x;
+    infotype1 x;
     int temp = n, space;
-    while(!(IsEmpty(A)) || !(IsEmpty(B)) || !(IsEmpty(C))){
+    while(!(IsEmptyStack(A)) || !(IsEmptyStack(B)) || !(IsEmptyStack(C))){
         if(Count(A) == temp){
             Pop(&A,&x);
             space = ((2*n-1) - x)/2;
@@ -55,12 +55,12 @@ void displayTOH(Stack A, Stack B, Stack C, int n){
 // Menampilkan piringan yang berada pada stack
 
 void insertTOH(Stack *S1, Stack *S2, int *step){
-    infotype x;
-    if(IsEmpty(*S1)){
+    infotype1 x;
+    if(IsEmptyStack(*S1)){
         printf("Tidak ada piringan pada tower asal!\n\n");
     }
     else{
-        if(!IsEmpty(*S2) && (InfoTop(*S2) < InfoTop(*S1))){
+        if(!IsEmptyStack(*S2) && (InfoTop(*S2) < InfoTop(*S1))){
             printf("Piringan dari tower asal lebih besar dari piringan tower tujuan!\n\n");
         }
         else{

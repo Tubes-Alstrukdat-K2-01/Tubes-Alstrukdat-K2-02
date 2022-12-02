@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../../ADT/boolean.h"
-#include "../../ADT/set&map/set.h"
+#include "../../ADT/setmap/set.h"
 char toLower(char c){
     if(c >= 'A' && c <= 'Z'){
         return c + 32;
@@ -32,7 +32,7 @@ ArrayDin initDescList(){
     return A;
 }
 //semua game ngasilin score (int)
-int hangman(){
+void hangman(){
     ArrayDin Katalist = initKatalist();
     ArrayDin descList = initDescList();
 
@@ -103,5 +103,4 @@ int hangman(){
         }
     }
     printf("Score yang kamu dapatkan: %d\n", score);
-    return score;
 }

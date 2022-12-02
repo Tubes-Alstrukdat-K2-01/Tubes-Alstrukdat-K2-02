@@ -6,7 +6,7 @@
 // ArrayDin initDescList();
 // hide the implementation so no one can use it
 
-int hangman();
+void hangman();
 
 
 #endif
