@@ -45,6 +45,7 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename)
             }
             for (i = 0; i < n; i++)
             {
+                int game = i;
                 fgets(data, 255, file);
                 int j = 0, k = 0;
                 while(data[k] != '\0'){
@@ -54,16 +55,16 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename)
                     }
                     k++;
                 }
-                for(int a=0; a < j; a++){
+                for(int a = 0; a < j; a++){
                     fgets(data, 255, file);
-                    Kata w;
-                    MakeKata(&w);
+                    Kata nama;
+                    MakeKata(&nama);
                     k = 0;
                     while(data[k] != '\0' && data[k] != ' '){
-                        w.Tab[k] = data[k];
+                        nama.Tab[k] = data[k];
                         k++;
                     }
-                    w.Tab[k] = '\0';
+                    nama.Tab[k] = '\0';
                     while(data[k] == ' '){
                         k++;
                     }
@@ -75,7 +76,7 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename)
                         }
                         k++;
                     }
-                    MInsert(&SC[i],w,skor);
+                    MInsert(&SC[game], nama, skor);
                 }
             }
         }

@@ -19,5 +19,5 @@ void menuSkipGame(Queue *Q, int skip){
     Kata Head;
     dequeue(Q, &Head);
     /* nunggu list game buat nge run permainan yang di head */
-    // Play(Head); // PLACEHOLDER
+    Play(Head); // PLACEHOLDER
 };

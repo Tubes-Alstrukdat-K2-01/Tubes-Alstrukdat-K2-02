@@ -1,9 +1,4 @@
 #include "snakeonmeteor.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include "../../ADT/matrixsnake/matrikssnake.c"
-#include "../../ADT/listlinier/listular.c"
 
 ular makeUlar() {
     int x1 = rand() %5;
@@ -138,13 +133,6 @@ void playsnake() {
     }
 }
 
-
-int main() {
-    srand(time(0));
-    playsnake();
-    
-    return 0;
-}
 
 /* -1 untuk buah */
 /* -2 untuk meteor */

@@ -47,6 +47,9 @@ void SAVE(ArrayDin TabGame,char *filename){
     }
     for(i=0; i<TabGame.Neff; i++){
         int j;
+        char *count = IntToString(SC[i].Count);
+        fputs(count,file);
+        fputs("\n",file);
         for(j=0; j<SC[i].Count; j++){
             fputs(SC[i].Elements[j].Key.Tab,file);
             fputs(" ",file);

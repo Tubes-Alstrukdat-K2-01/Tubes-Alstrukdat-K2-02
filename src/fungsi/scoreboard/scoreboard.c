@@ -27,7 +27,12 @@ void InsertScore(int game, int score){
     STARTWORD();
     Kata nama; MakeKata(&nama);
     CopyWordtoKata(&nama,currentWord);
-    MInsert(&SC[game], nama, score);
+    if(!MIsMember(SC[game],nama)){
+        MInsert(&SC[game], nama, score);
+    }
+    else{
+        printf("Nama yang digunakan sudah ada di dalam scoreboard!\n");
+    }
     while(!isEndWord()){
         ADVWORD();
     }

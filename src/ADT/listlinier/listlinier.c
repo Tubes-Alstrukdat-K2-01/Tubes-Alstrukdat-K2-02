@@ -284,13 +284,3 @@ void Konkat1(List *L1, List *L2, List *L3)
     CreateEmpty(L1);
     CreateEmpty(L2);
 }
-
-int main() {
-    List Ularmain;
-    CreateEmpty(&Ularmain);
-    infotype X = 2;
-    address P = Alokasi(X);
-    InsertFirst(&Ularmain,P);
-
-    printf("%d",Ularmain.First->info);
-}

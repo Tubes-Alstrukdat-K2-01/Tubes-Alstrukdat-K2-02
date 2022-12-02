@@ -5,7 +5,6 @@ void menuPlayGame(Queue *Q){
     if (!isEmpty(*Q)){
         Kata Head;
         dequeue(Q, &Head);
-        printf("%s\n",Head.Tab);
         /* nunggu list game buat nge run permainan yang di head */
         Play(Head); // PLACEHOLDER
     }
@@ -16,26 +15,31 @@ void menuPlayGame(Queue *Q){
 void Play(Kata W){
     if  (IsKataEqual(W, StringtoKata("RNG"))){
         printf("Loading game RNG...\n");
+        Push2(&History, "RNG");
         RNG();
     } else if (IsKataEqual(W, StringtoKata("DINER DASH"))){
         printf("Loading game Dinner Dash...\n");
+        Push2(&History, "DINER DASH");
         dinerdash();
     } else if (IsKataEqual(W, StringtoKata("HANGMAN"))){
         printf("Loading game HANGMAN...\n");
+        Push2(&History,"HANGMAN");
         hangman();
     } else if (IsKataEqual(W, StringtoKata("TOWER OF HANOI"))){
         printf("Loading game TOWER OF HANOI...\n");
+        Push2(&History, "TOWER OF HANOI");
         towerofhanoi();
     } else if (IsKataEqual(W, StringtoKata("SNAKE ON METEOR"))){
         printf("Loading game TOWER OF HANOI...\n");
-        //
+        Push2(&History, "SNAKE ON METEOR");
+        // playsnake();
     } else {
         printf("Loading game %s...\n",W.Tab);
         srand(time(0));
         int skor = (rand()*3)%100 + 1;
+        Push2(&History, W.Tab);
         printf("Skor Akhir dari game %s adalah %d\n",W.Tab,skor);
     }
-    Push2(&History,W.Tab);
 }
 // int main(){
 //     Queue Q;

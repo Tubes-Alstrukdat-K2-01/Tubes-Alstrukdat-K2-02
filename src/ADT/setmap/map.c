@@ -82,7 +82,6 @@ valuetype MValue(Map M, keytype k){
 /* Jika tidak ada key k pada M, akan mengembalikan Nil */
 
 void MInsert(Map *M, keytype k, valuetype v){
-    if(!MIsMember(*M,k)) {
         int index = 0;
         while(((*M).Elements[index].Value >= v) && (index < (*M).Count)){
             index++;
@@ -101,7 +100,6 @@ void MInsert(Map *M, keytype k, valuetype v){
                 (*M).Elements[index].Key.Tab[j] = k.Tab[j];
         }
         (*M).Elements[index].Key.Length = k.Length;
-    }
 }
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
